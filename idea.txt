@@ -1,0 +1,9 @@
+We could have a character model builder that you can write info about your characters which is then consumed for the content generation
+when we provide like refinement we can also pass the prev and next paragraphs for context plus the chars model
+models for long form context from summary of the entire story arc across chapters (these can be x chapters long enough to write a full fiction novel)
+Each chapter also has a summary.
+each chapters summary is what makes up its paragraphs
+when refining paragraphs, it will use the prev and next paragraphs plus the character context of whos involved (these will be selectable from the character list)
+character list includes things like age, bio, gender, job history, any wild and wonderful information that could influence the outcome of the models refinement prompt.
+books should be related to users (user can have many books)
+characters, summary, chapters, story type are all related to abook(a book can have multiple characters, chapters, and one summary and one story type (romance, horror etc))

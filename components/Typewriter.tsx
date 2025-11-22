@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { SimpleMarkdown } from './SimpleMarkdown';
 
-export const Typewriter = ({ text, onComplete }) => {
+export const Typewriter = ({ text, onComplete }: { text: string; onComplete?: () => void }) => {
   const [displayedText, setDisplayedText] = useState('');
   
   useEffect(() => {

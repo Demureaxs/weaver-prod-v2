@@ -43,6 +43,7 @@ import {
   Layers,
   Clock,
   FileEdit,
+  BookOpen,
 } from 'lucide-react';
 
 // --- Safe Firebase Imports & Mocking ---
@@ -83,6 +84,7 @@ import { SimpleMarkdown } from '../../components/SimpleMarkdown';
 import { AuthScreen } from '../../components/AuthScreen';
 import { getDifficultyColor } from '../../lib/utils.tsx';
 import { Dashboard } from '../../components/Dashboard';
+import WorldBuilder from '../../components/WorldBuilder';
 const AppContent = () => {
   const [user, setUser] = useState(null);
   const [isLoadingAuth, setIsLoadingAuth] = useState(true);
@@ -518,6 +520,14 @@ const handleRefineCreditDeduction = (cost) => {
     navigator.clipboard.writeText(generatedContent);
   };
 
+  const handleUserUpdate = (updatedUser) => {
+    setMockUsers((prev) => ({
+      ...prev,
+      [updatedUser.uid]: updatedUser,
+    }));
+    setUser(updatedUser);
+  };
+
   if (isLoadingAuth)
     return (
       <div className='min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900'>
@@ -584,8 +594,10 @@ const handleRefineCreditDeduction = (cost) => {
         </div>
       </header>
 
-      <main className='flex-grow max-w-3xl w-full mx-auto p-4 pb-24'>
+      <main className='flex-grow w-full lg:max-w-screen-2xl mx-auto p-4 pb-24'>
         {activeTool === 'dashboard' && <Dashboard user={user} />}
+
+        {activeTool === 'world-builder' && <WorldBuilder user={user} onUpdate={handleUserUpdate} />}
 
         {activeTool === 'keywords' && (
           <div className='animate-fade-in space-y-6'>
@@ -1077,6 +1089,17 @@ const handleRefineCreditDeduction = (cost) => {
           >
             <Map size={24} />
             <span className='text-xs mt-1 font-medium'>Sitemap</span>
+          </button>
+          <button
+            onClick={() => setActiveTool('world-builder')}
+            className={`hidden md:flex flex-1 p-2 rounded-xl flex-col items-center transition-colors ${
+              activeTool === 'world-builder'
+                ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20'
+                : 'text-gray-400 hover:text-gray-600'
+            }`}
+          >
+            <BookOpen size={24} />
+            <span className='text-xs mt-1 font-medium'>World</span>
           </button>
         </div>
       </div>
