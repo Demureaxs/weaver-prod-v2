@@ -2,10 +2,18 @@
 import React from 'react';
 import { EditableBlock } from './EditableBlock';
 
-export const SimpleMarkdown = ({ content, onContentChange, isStreaming = false, currentApiKey, onDeductCredit }) => {
+type SimpleMarkdownProps = {
+  content: string;
+  onContentChange: (content: string) => void;
+  isStreaming: boolean;
+  currentApiKey: string;
+  onDeductCredit: (amount: number) => boolean;
+};
+
+export const SimpleMarkdown = ({ content, onContentChange, isStreaming = false, currentApiKey, onDeductCredit }: SimpleMarkdownProps) => {
   if (!content) return <div className='text-gray-400 italic'>No content generated yet...</div>;
   const lines = content.split('\n');
-  const handleBlockSave = (index, newContent) => {
+  const handleBlockSave = (index: number, newContent: string) => {
     const newLines = [...lines];
     newLines[index] = newContent;
     onContentChange(newLines.join('\n'));

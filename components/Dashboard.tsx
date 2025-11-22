@@ -11,78 +11,77 @@ export const Dashboard = ({ user }) => {
       {/* Metrics Grid */}
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
         {/* Articles Generated */}
-        <div className='bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 flex items-center justify-between'>
+        <div className='bg-background p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 flex items-center justify-between'>
           <div>
             <p className='text-sm text-gray-500 dark:text-gray-400 mb-1'>Articles Generated</p>
             {/* Shows actual count of articles from the array */}
-            <h3 className='text-3xl font-bold text-indigo-600 dark:text-indigo-400'>{user.articles ? user.articles.length : 0}</h3>
+            <h3 className='text-3xl font-bold text-primary'>{user.articles ? user.articles.length : 0}</h3>
           </div>
-          <div className='bg-indigo-50 dark:bg-indigo-900/30 p-3 rounded-xl text-indigo-500'>
+          <div className='bg-primary/10 p-3 rounded-xl text-primary'>
             <FileText size={24} />
           </div>
         </div>
 
         {/* Active Drafts */}
-        <div className='bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 flex items-center justify-between'>
+        <div className='bg-background p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 flex items-center justify-between'>
           <div>
             <p className='text-sm text-gray-500 dark:text-gray-400 mb-1'>Active Drafts</p>
-            <h3 className='text-3xl font-bold text-purple-600 dark:text-purple-400'>{user.activeCount || 0}</h3>
+            <h3 className='text-3xl font-bold text-secondary'>{user.activeCount || 0}</h3>
           </div>
-          <div className='bg-purple-50 dark:bg-purple-900/30 p-3 rounded-xl text-purple-500'>
+          <div className='bg-secondary/10 p-3 rounded-xl text-secondary'>
             <Edit3 size={24} />
           </div>
         </div>
 
         {/* Credits Remaining */}
-        <div className='bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 flex items-center justify-between'>
+        <div className='bg-background p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 flex items-center justify-between'>
           <div>
             <p className='text-sm text-gray-500 dark:text-gray-400 mb-1'>Credits Remaining</p>
-            <h3 className={`text-3xl font-bold ${user.credits > 10 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
-              {user.credits}
-            </h3>
+            <h3 className={`text-3xl font-bold ${user.credits > 10 ? 'text-green-600' : 'text-red-600'}`}>{user.credits}</h3>
           </div>
-          <div className='bg-green-50 dark:bg-green-900/30 p-3 rounded-xl text-green-500'>
+          <div className='bg-green-500/10 p-3 rounded-xl text-green-500'>
             <CreditCard size={24} />
           </div>
         </div>
 
         {/* Current Plan */}
-        <div className='bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 flex items-center justify-between'>
+        <div className='bg-background p-6 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 flex items-center justify-between'>
           <div>
             <p className='text-sm text-gray-500 dark:text-gray-400 mb-1'>Current Plan</p>
-            <h3 className='text-2xl font-bold text-gray-800 dark:text-gray-100'>{user.plan}</h3>
+            <h3 className='text-2xl font-bold text-foreground'>{user.plan}</h3>
           </div>
-          <div className='bg-gray-100 dark:bg-gray-700/50 p-3 rounded-xl text-gray-600 dark:text-gray-300'>
+          <div className='bg-foreground/10 p-3 rounded-xl text-foreground'>
             <Layers size={24} />
           </div>
         </div>
       </div>
 
       {/* Quick Action / Upgrade Banner */}
-      <div className='bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-6 text-white shadow-lg'>
+      <div className='bg-gradient-to-r from-primary to-secondary rounded-2xl p-6 text-white shadow-lg'>
         <div className='flex justify-between items-center'>
           <div>
             <h3 className='font-bold text-lg'>Running low on credits?</h3>
             <p className='text-indigo-100 text-sm opacity-90'>Upgrade your plan to unlock unlimited generation.</p>
           </div>
-          <button className='bg-white text-indigo-600 px-4 py-2 rounded-lg font-bold text-sm hover:bg-indigo-50 transition-colors'>
-            Upgrade Plan
-          </button>
+          <button className='bg-white text-primary px-4 py-2 rounded-lg font-bold text-sm hover:bg-gray-100 transition-colors'>Upgrade Plan</button>
         </div>
       </div>
 
       {/* Recent Drafts / Articles List */}
-      <div className='bg-white dark:bg-gray-800 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 overflow-hidden'>
-        <div className='p-4 border-b border-gray-100 dark:border-gray-700 flex items-center gap-2 bg-gray-50 dark:bg-gray-900/30'>
-          <FileEdit className='text-indigo-500' size={20} />
-          <h3 className='font-bold text-gray-700 dark:text-gray-200'>Recent Drafts</h3>
+      <div className='bg-background rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 overflow-hidden'>
+        <div className='p-4 border-b border-gray-100 dark:border-gray-700 flex items-center gap-2 bg-background/50'>
+          <FileEdit className='text-primary' size={20} />
+          <h3 className='font-bold text-foreground'>Recent Drafts</h3>
         </div>
         <div className='divide-y divide-gray-100 dark:divide-gray-700'>
           {user.articles && user.articles.length > 0 ? (
             user.articles.map((article, idx) => (
-<button key={article.id} className="w-full text-left p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group flex justify-between items-center">
+              <button
+                key={article.id}
+                className='w-full text-left p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group flex justify-between items-center'
+              >
                 <div>
-                  <h4 className='font-semibold text-gray-800 dark:text-gray-100 group-hover:text-indigo-600 transition-colors'>{article.title}</h4>
+                  <h4 className='font-semibold text-foreground group-hover:text-primary transition-colors'>{article.title}</h4>
                   <div className='flex items-center gap-2 mt-1'>
                     <span className='text-xs text-gray-400 flex items-center gap-1'>
                       <Clock size={10} /> {new Date(article.date).toLocaleDateString()}
@@ -92,7 +91,7 @@ export const Dashboard = ({ user }) => {
                     </span>
                   </div>
                 </div>
-                <div className='text-gray-300 group-hover:text-indigo-400'>
+                <div className='text-gray-300 group-hover:text-primary'>
                   <ArrowRight size={18} />
                 </div>
               </button>

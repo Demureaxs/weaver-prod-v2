@@ -81,13 +81,7 @@ import { formatText } from '../../lib/utils.tsx';
 import { EditableBlock } from '../../components/EditableBlock';
 import { SimpleMarkdown } from '../../components/SimpleMarkdown';
 import { AuthScreen } from '../../components/AuthScreen';
-// Helper for difficulty color
-const getDifficultyColor = (diff) => {
-  if (diff < 40) return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300 border border-green-200 dark:border-green-700';
-  if (diff < 70) return 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300 border border-orange-200 dark:border-orange-700';
-  return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300 border border-red-200 dark:border-red-700';
-};
-
+import { getDifficultyColor } from '../../lib/utils.tsx';
 import { Dashboard } from '../../components/Dashboard';
 const AppContent = () => {
   const [user, setUser] = useState(null);
@@ -223,10 +217,11 @@ useEffect(() => {
         [user.uid]: {
           ...prev[user.uid],
           articles: updatedArticles,
+          activeCount: (prev[user.uid].activeCount || 0) + 1,
         },
       }));
       // Immediate local update so Dashboard reflects it instantly without waiting for sync
-      setUser((prev) => ({ ...prev, articles: updatedArticles }));
+      setUser((prev) => ({ ...prev, articles: updatedArticles, activeCount: (prev.activeCount || 0) + 1 }));
       return;
     }
 
@@ -1077,7 +1072,7 @@ const handleRefineCreditDeduction = (cost) => {
           <button
             onClick={() => setActiveTool('sitemap')}
             className={`flex-1 p-2 rounded-xl flex flex-col items-center transition-colors ${
-              activeTool === 'sitemap' ? 'text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-900/20' : 'text-gray-400 hover:text-gray-600'
+              activeTool === 'sitemap' ? 'text-primary bg-primary/10' : 'text-gray-400 hover:text-foreground'
             }`}
           >
             <Map size={24} />

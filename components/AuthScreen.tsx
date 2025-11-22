@@ -40,13 +40,13 @@ export const AuthScreen = ({ onLogin, mockUsers, switchMockUser, isDemoMode, aut
   };
 
   return (
-    <div className='min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 p-4'>
-      <div className='bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl w-full max-w-md border border-gray-200 dark:border-gray-700'>
+    <div className='min-h-screen flex items-center justify-center bg-background p-4'>
+      <div className='bg-background p-8 rounded-2xl shadow-xl w-full max-w-md border border-gray-200 dark:border-gray-700'>
         <div className='text-center mb-8'>
-          <div className='bg-gradient-to-br from-indigo-500 to-purple-600 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 text-white shadow-lg'>
+          <div className='bg-gradient-to-br from-primary to-secondary w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 text-white shadow-lg'>
             <Sparkles size={32} />
           </div>
-          <h1 className='text-2xl font-bold text-gray-800 dark:text-white'>Welcome to BlogGenie</h1>
+          <h1 className='text-2xl font-bold text-foreground'>Welcome to BlogGenie</h1>
           <p className='text-gray-500 dark:text-gray-400 mt-2'>AI-Powered Content Creation</p>
           {isDemoMode && (
             <span className='inline-block mt-2 bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full border border-yellow-200'>
@@ -55,28 +55,28 @@ export const AuthScreen = ({ onLogin, mockUsers, switchMockUser, isDemoMode, aut
           )}
         </div>
         {isDemoMode && (
-          <div className='mb-6 p-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl border border-indigo-100 dark:border-indigo-800'>
-            <h3 className='text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase mb-3 tracking-wider'>Quick Prototyping Login</h3>
+          <div className='mb-6 p-4 bg-primary/10 rounded-xl border border-primary/20'>
+            <h3 className='text-xs font-bold text-primary uppercase mb-3 tracking-wider'>Quick Prototyping Login</h3>
             <div className='grid grid-cols-2 gap-3'>
               <button
                 onClick={() => onLogin(mockUsers['user_alice'])}
-                className='p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow text-left border border-gray-100 dark:border-gray-700'
+                className='p-3 bg-background rounded-lg shadow-sm hover:shadow-md transition-shadow text-left border border-gray-100 dark:border-gray-700'
               >
-                <div className='font-bold text-sm text-gray-800 dark:text-gray-200'>Alice</div>
+                <div className='font-bold text-sm text-foreground'>Alice</div>
                 <div className='text-xs text-gray-500'>Gardener</div>
               </button>
               <button
                 onClick={() => onLogin(mockUsers['user_bob'])}
-                className='p-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow text-left border border-gray-100 dark:border-gray-700'
+                className='p-3 bg-background rounded-lg shadow-sm hover:shadow-md transition-shadow text-left border border-gray-100 dark:border-gray-700'
               >
-                <div className='font-bold text-sm text-gray-800 dark:text-gray-200'>Bob</div>
+                <div className='font-bold text-sm text-foreground'>Bob</div>
                 <div className='text-xs text-gray-500'>Developer</div>
               </button>
             </div>
           </div>
         )}
         {error && (
-          <div className='mb-4 p-3 bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-sm rounded-lg flex items-center gap-2'>
+          <div className='mb-4 p-3 bg-red-500/10 text-red-500 text-sm rounded-lg flex items-center gap-2'>
             <AlertCircle size={16} />
             {error}
           </div>
@@ -90,7 +90,7 @@ export const AuthScreen = ({ onLogin, mockUsers, switchMockUser, isDemoMode, aut
                 type='email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className='w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none'
+                className='w-full pl-10 pr-4 py-2 bg-background border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary outline-none'
                 required
               />
             </div>
@@ -103,12 +103,12 @@ export const AuthScreen = ({ onLogin, mockUsers, switchMockUser, isDemoMode, aut
                 type='password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className='w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none'
+                className='w-full pl-10 pr-4 py-2 bg-background border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary outline-none'
                 required
               />
             </div>
           </div>
-          <button type='submit' className='w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl transition-colors'>
+          <button type='submit' className='w-full bg-primary hover:bg-secondary text-white font-bold py-3 rounded-xl transition-colors'>
             {isLogin ? 'Sign In' : 'Create Account'}
           </button>
         </form>
@@ -119,14 +119,14 @@ export const AuthScreen = ({ onLogin, mockUsers, switchMockUser, isDemoMode, aut
         </div>
         <button
           onClick={handleGoogleLogin}
-          className='w-full bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-200 font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2 hover:bg-gray-50 dark:hover:bg-gray-600'
+          className='w-full bg-background border border-gray-200 dark:border-gray-600 text-foreground font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-700'
         >
           <Globe size={18} />
           Continue with Google
         </button>
         <p className='mt-6 text-center text-sm text-gray-500'>
           {isLogin ? "Don't have an account? " : 'Already have an account? '}
-          <button onClick={() => setIsLogin(!isLogin)} className='text-indigo-600 hover:underline font-medium'>
+          <button onClick={() => setIsLogin(!isLogin)} className='text-primary hover:underline font-medium'>
             {isLogin ? 'Sign Up' : 'Log In'}
           </button>
         </p>

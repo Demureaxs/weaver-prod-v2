@@ -1,28 +1,27 @@
 'use client';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import { SimpleMarkdown } from './SimpleMarkdown';
 
 export const Typewriter = ({ text, onComplete }) => {
   const [displayedText, setDisplayedText] = useState('');
-  const indexRef = useRef(0);
+  
   useEffect(() => {
-    indexRef.current = 0;
     setDisplayedText('');
     if (!text) return;
+
     const intervalId = setInterval(() => {
       setDisplayedText((prev) => {
-        const nextChar = text.charAt(indexRef.current);
-        indexRef.current++;
-        if (indexRef.current >= text.length) {
+        if (prev.length >= text.length) {
           clearInterval(intervalId);
-          if (onComplete) {
-            setTimeout(onComplete, 0);
-          }
+          if (onComplete) onComplete();
           return text;
         }
-        return prev + nextChar;
+        return text.slice(0, prev.length + 1);
       });
-    }, 5);
+    }, 5); 
+
     return () => clearInterval(intervalId);
   }, [text, onComplete]);
-  return <div className="space-y-2 text-left font-sans leading-relaxed text-gray-800 dark:text-gray-200 whitespace-pre-wrap">{displayedText}</div>;
+
+  return <SimpleMarkdown content={displayedText} onContentChange={() => {}} isStreaming={true} />;
 };
