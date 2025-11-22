@@ -34,7 +34,7 @@ const WorldBuilder: React.FC<WorldBuilderProps> = ({ user, onUpdate }) => {
   return (
     <div className="flex h-full gap-4">
       {/* Left Pane: Navigation */}
-      <div className="w-1/4 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-6 overflow-y-auto">
+      <div className="w-1/4 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-6 overflow-y-auto sticky top-28 h-fit max-h-[calc(100vh-10rem)] scrollbar-hide">
         <h2 className="text-xl font-bold mb-4">My Worlds</h2>
         <div className="mb-6">
           <h3 className="text-lg font-semibold mb-2">Books</h3>
@@ -119,7 +119,7 @@ const WorldBuilder: React.FC<WorldBuilderProps> = ({ user, onUpdate }) => {
       </div>
 
       {/* Right Pane: Parameter Editor */}
-      <div className="w-1/4 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-6 overflow-y-auto">
+      <div className="w-1/4 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-6 overflow-y-auto sticky top-28 h-fit max-h-[calc(100vh-10rem)] scrollbar-hide">
         <h2 className="text-xl font-bold mb-4">Editor</h2>
         {selectedItem ? (
           <div>
